@@ -1,4 +1,3 @@
-function formatDate(timestamp) {}
 let now = new Date();
 let dateElement = document.querySelector("#date-display");
 let timeElement = document.querySelector("#time-display");
@@ -49,6 +48,16 @@ function showWeatherCondition(response) {
     response.data.main.temp
   );
   document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
+  document.querySelector("#weather-description-display").innerHTML =
+    response.data.weather[0].description;
+
+  let sunriseTime = response.data.sys.sunrise;
+  let sunriseHours = Math.floor(sunriseTime / 60);
+  let sunriseMinutes = sunriseTime % 60;
+  document.querySelector(
+    "#sunrise-time"
+  ).innerHTML = `${sunriseHours}.${sunriseMinutes}`;
+  document.querySelector("#sunset-time").innerHTML = response.data.sys.sunset;
 }
 
 function searchCityWeather(event) {
