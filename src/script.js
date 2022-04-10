@@ -1,3 +1,4 @@
+function formatDate(timestamp) {}
 let now = new Date();
 let dateElement = document.querySelector("#date-display");
 let timeElement = document.querySelector("#time-display");
@@ -43,7 +44,6 @@ dateElement.innerHTML = `${day} ${date} ${month} ${year}`;
 timeElement.innerHTML = `${hours}:${minutes}`;
 
 function showWeatherCondition(response) {
-  console.log(response.data);
   document.querySelector("#city-display").innerHTML = response.data.name;
   document.querySelector("#temperature-display").innerHTML = Math.round(
     response.data.main.temp
@@ -72,15 +72,7 @@ function retrieveCurrentPosition(position) {
   let unit = "metric";
   let url = `${apiEndpoint}lat=${latitude}&lon=${longitude}&units=${unit}&appid=${apiKey}`;
 
-  function showCurrentLocationWeather(response) {
-    let cityDisplay = document.querySelector("#city-display");
-    cityDisplay.innerHTML = `${response.data.name}`;
-    let temperature = Math.round(response.data.main.temp);
-    let temperatureDisplay = document.querySelector("#temperature-display");
-    temperatureDisplay.innerHTML = `${temperature}`;
-  }
-
-  axios.get(url).then(showCurrentLocationWeather);
+  axios.get(url).then(showWeatherCondition);
 }
 
 function currentPosition() {
