@@ -1,0 +1,60 @@
+body {
+  font-family: "Heebo", sans-serif;
+  text-align: center;
+}
+.container {
+  padding: 30px 0px 30 px 0px;
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+}
+.imageContainer {
+  position: relative;
+  text-align: center;
+  color: #fff;
+}
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+h1 {
+  font-size: 80px;
+  padding: 20px;
+}
+h2 {
+  font-size: 30px;
+  padding: 20px 0px 20px 0px;
+}
+h3 {
+  font-size: 20px;
+  padding-bottom: 30px;
+}
+.sun-cloud-icon-main {
+  font-size: 45px;
+}
+.forecastDay {
+  color: #c24d2c;
+  font-weight: 800;
+}
+.sunrise-label,
+.sunset-label,
+.wind-speed-label {
+  color: #c24d2c;
+  font-weight: 800;
+}
+.row {
+  padding: 20px;
+}
+.icon {
+  font-size: 20px;
+  padding: 15px 0px 15px 0px;
+}
+footer {
+  margin: 50px;
+  font-size: 12px;
+}
+.form-container {
+  padding: 0px, 0px, 0px, 0px;
+}
