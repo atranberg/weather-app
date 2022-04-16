@@ -56,6 +56,7 @@ function showWeatherCondition(response) {
   celsiusTemperature = response.data.main.temp;
   document.querySelector("#temperature-display").innerHTML =
     Math.round(celsiusTemperature);
+  document.querySelector("#units").innerHTML = `°C`;
 
   document.querySelector("#weather-description-display").innerHTML =
     response.data.weather[0].description;
@@ -122,6 +123,13 @@ function showFahrenheitTemperature(event) {
   document.querySelector("#units").innerHTML = `°F`;
 }
 
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  document.querySelector("#temperature-display").innerHTML =
+    Math.round(celsiusTemperature);
+  document.querySelector("#units").innerHTML = `°C`;
+}
+
 let celsiusTemperature = null;
 
 function currentPosition() {
@@ -133,5 +141,8 @@ currentLocationButton.addEventListener("click", currentPosition);
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchCityWeather("Borås");
