@@ -59,8 +59,11 @@ function showWeatherCondition(response) {
   document.querySelector("#sunrise-time").innerHTML = formattedSunriseTime;
 
   let unixSunsetTimestamp = response.data.sys.sunset;
-  let sunsetDate = new Date();
-  document.querySelector("#sunset-time").innerHTML = response.data.sys.sunset;
+  let sunsetDate = new Date(unixSunsetTimestamp * 1000);
+  let sunsetHours = sunsetDate.getHours();
+  let sunsetMinutes = sunsetDate.getMinutes();
+  let formattedSunsetTime = `${sunsetHours}:${sunsetMinutes}`;
+  document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
 }
 
 function searchCityWeather(event) {
