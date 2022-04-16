@@ -61,3 +61,11 @@ footer {
 .form-container {
   padding: 0px, 0px, 0px, 0px;
 }
+#temperature-conversion .active {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+#temperature-conversion .active:hover {
+  text-decoration: none;
+}
