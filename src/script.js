@@ -71,7 +71,9 @@ function showWeatherCondition(response) {
     sunsetHours = `0${sunsetHours}`;
   }
   let sunsetMinutes = sunsetDate.getMinutes();
-
+  if (sunsetMinutes < 10) {
+    sunsetMinutes = `0${sunsetMinutes}`;
+  }
   let formattedSunsetTime = `${sunsetHours}:${sunsetMinutes}`;
   document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
 }
