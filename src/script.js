@@ -51,12 +51,15 @@ function showWeatherCondition(response) {
   document.querySelector("#weather-description-display").innerHTML =
     response.data.weather[0].description;
 
-  let sunriseTime = response.data.sys.sunrise;
-  let sunriseHours = Math.floor(sunriseTime / 60);
-  let sunriseMinutes = sunriseTime % 60;
-  document.querySelector(
-    "#sunrise-time"
-  ).innerHTML = `${sunriseHours}.${sunriseMinutes}`;
+  let unixSunriseTimestamp = response.data.sys.sunrise;
+  let sunriseDate = new Date(unixSunriseTimestamp * 1000);
+  let sunriseHours = sunriseDate.getHours();
+  let sunriseMinutes = sunriseDate.getMinutes();
+  let formattedSunriseTime = `${sunriseHours}:${sunriseMinutes}`;
+  document.querySelector("#sunrise-time").innerHTML = formattedSunriseTime;
+
+  let unixSunsetTimestamp = response.data.sys.sunset;
+  let sunsetDate = new Date();
   document.querySelector("#sunset-time").innerHTML = response.data.sys.sunset;
 }
 
