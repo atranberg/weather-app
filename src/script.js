@@ -44,12 +44,22 @@ timeElement.innerHTML = `${hours}:${minutes}`;
 
 function showWeatherCondition(response) {
   document.querySelector("#city-display").innerHTML = response.data.name;
+  document
+    .querySelector("#main-icon-display")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  document
+    .querySelector("#main-icon-display")
+    .setAttribute("alt", response.data.weather[0].description);
   document.querySelector("#temperature-display").innerHTML = Math.round(
     response.data.main.temp
   );
-  document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
+
   document.querySelector("#weather-description-display").innerHTML =
     response.data.weather[0].description;
+  document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
 
   let unixSunriseTimestamp = response.data.sys.sunrise;
   let sunriseDate = new Date(unixSunriseTimestamp * 1000);
