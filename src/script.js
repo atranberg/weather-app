@@ -78,18 +78,20 @@ function showWeatherCondition(response) {
   document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
 }
 
-function searchCityWeather(event) {
-  event.preventDefault();
+function searchCityWeather(city) {
   let apiKey = "03cb8d16f9a2b4cc3c8597d68446f50d";
-  let citySearch = document.querySelector("#city-input").value;
   let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?q=";
   let unit = "metric";
-  let apiUrl = `${apiEndpoint}${citySearch}&appid=${apiKey}&units=${unit}`;
+  let apiUrl = `${apiEndpoint}${city}&appid=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(showWeatherCondition);
 }
-
+function handleSearch(event) {
+  event.preventDefault();
+  let citySearchInput = document.querySelector("#city-input");
+  searchCityWeather(citySearchInput.value);
+}
 let searchCityForm = document.querySelector("#search-city-form");
-searchCityForm.addEventListener("submit", searchCityWeather);
+searchCityForm.addEventListener("submit", handleSearch);
 
 function retrieveCurrentPosition(position) {
   let apiKey = "03cb8d16f9a2b4cc3c8597d68446f50d";
@@ -108,3 +110,5 @@ function currentPosition() {
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", currentPosition);
+
+searchCityWeather("Borås");
