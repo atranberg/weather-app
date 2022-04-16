@@ -67,7 +67,11 @@ function showWeatherCondition(response) {
   let unixSunsetTimestamp = response.data.sys.sunset;
   let sunsetDate = new Date(unixSunsetTimestamp * 1000);
   let sunsetHours = sunsetDate.getHours();
+  if (sunsetHours < 10) {
+    sunsetHours = `0${sunsetHours}`;
+  }
   let sunsetMinutes = sunsetDate.getMinutes();
+
   let formattedSunsetTime = `${sunsetHours}:${sunsetMinutes}`;
   document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
 }
