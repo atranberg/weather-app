@@ -121,6 +121,8 @@ function showFahrenheitTemperature(event) {
   let displayTemperature = document.querySelector("#temperature-display");
   displayTemperature.innerHTML = Math.round(fahrenheitTemperature);
   document.querySelector("#units").innerHTML = `°F`;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
 }
 
 function showCelsiusTemperature(event) {
@@ -128,6 +130,8 @@ function showCelsiusTemperature(event) {
   document.querySelector("#temperature-display").innerHTML =
     Math.round(celsiusTemperature);
   document.querySelector("#units").innerHTML = `°C`;
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
 
 let celsiusTemperature = null;
