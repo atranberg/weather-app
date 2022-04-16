@@ -58,6 +58,9 @@ function showWeatherCondition(response) {
     sunriseHours = `0${sunriseHours}`;
   }
   let sunriseMinutes = sunriseDate.getMinutes();
+  if (sunriseMinutes < 10) {
+    sunriseMinutes = `0${sunriseMinutes}`;
+  }
   let formattedSunriseTime = `${sunriseHours}:${sunriseMinutes}`;
   document.querySelector("#sunrise-time").innerHTML = formattedSunriseTime;
 
