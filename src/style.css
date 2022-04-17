@@ -69,3 +69,6 @@ footer {
 #temperature-conversion .active:hover {
   text-decoration: none;
 }
+.forecastTemperatureMax {
+  font-weight: bold;
+}
