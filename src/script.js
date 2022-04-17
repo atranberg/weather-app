@@ -42,7 +42,8 @@ if (minutes < 10) {
 dateElement.innerHTML = `${day} ${date} ${month} ${year}`;
 timeElement.innerHTML = `${hours}:${minutes}`;
 
-function displayWeatherForecast() {
+function displayWeatherForecast(response) {
+  console.log(response.data.daily);
   let forecastDisplay = document.querySelector("#weather-forecast");
   let forecastHTML = `<div class="row">`;
   let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -64,6 +65,14 @@ function displayWeatherForecast() {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastDisplay.innerHTML = forecastHTML;
+}
+
+function retrieveForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "03cb8d16f9a2b4cc3c8597d68446f50d";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayWeatherForecast);
 }
 
 function showWeatherCondition(response) {
@@ -111,6 +120,8 @@ function showWeatherCondition(response) {
   }
   let formattedSunsetTime = `${sunsetHours}:${sunsetMinutes}`;
   document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
+
+  retrieveForecast(response.data.coord);
 }
 
 function searchCityWeather(city) {
@@ -174,4 +185,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchCityWeather("Borås");
-displayWeatherForecast();
