@@ -42,6 +42,30 @@ if (minutes < 10) {
 dateElement.innerHTML = `${day} ${date} ${month} ${year}`;
 timeElement.innerHTML = `${hours}:${minutes}`;
 
+function displayWeatherForecast() {
+  let forecastDisplay = document.querySelector("#weather-forecast");
+  let forecastHTML = `<div class="row">`;
+  forecastHTML =
+    forecastHTML +
+    `
+  <div class="col-sm">
+        <div class="weatherForecast" id="weather-forecast">
+          <div class="forecastDay">Mon</div>
+          <i class="fa-solid fa-cloud-sun icon sun-cloud"></i>
+          <div class="forecastTemperature">
+            <span class="forecastTemperatureMax">18</span>
+            <span class="forecastTemperatureMaxUnit">°C</span> |
+            <span class="forecastTemperatureMin"> 9</span>
+            <span class="forecastTemperatureMinUnit">°C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastDisplay.innerHTML = forecastHTML;
+}
+
 function showWeatherCondition(response) {
   document.querySelector("#city-display").innerHTML = response.data.name;
   document
@@ -150,3 +174,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 searchCityWeather("Borås");
+displayWeatherForecast();
