@@ -64,11 +64,11 @@ function displayWeatherForecast(response) {
             forecastDay.weather[0].icon
           }@2x.png" alt="" width="40"/>
           <div class="forecastTemperature">
-            <span class="forecastTemperatureMax">${Math.round(
+            <span class="forecastTemperatureMax" id="#forecast-temperature-max">${Math.round(
               forecastDay.temp.max
             )}°</span>
              |
-            <span class="forecastTemperatureMin"> ${Math.round(
+            <span class="forecastTemperatureMin" id="#forecast-temperature-min"> ${Math.round(
               forecastDay.temp.min
             )}°</span>
           </div>
@@ -81,10 +81,8 @@ function displayWeatherForecast(response) {
 }
 
 function retrieveForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "03cb8d16f9a2b4cc3c8597d68446f50d";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  console.log(apiUrl);
   axios.get(apiUrl).then(displayWeatherForecast);
 }
 
@@ -133,6 +131,53 @@ function showWeatherCondition(response) {
   }
   let formattedSunsetTime = `${sunsetHours}:${sunsetMinutes}`;
   document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
+
+  let weatherDescription = response.data.weather[0].description;
+  if (weatherDescription === "clear sky") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/clearSky.jpg");
+  }
+  if (weatherDescription === "few clouds") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/fewClouds.jpg");
+  }
+  if (weatherDescription === "scattered clouds") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/scatteredClouds.jpg");
+  }
+  if (weatherDescription === "broken clouds") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/brokenClouds.jpg");
+  }
+  if (weatherDescription === "shower rain") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/showerRain.jpg");
+  }
+  if (weatherDescription === "rain") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/rain.jpg");
+  }
+  if (weatherDescription === "thunderstorm") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/thunderstorm.jpg");
+  }
+  if (weatherDescription === "snow") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/snow.jpg");
+  }
+  if (weatherDescription === "mist") {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/mist.jpg");
+  }
 
   retrieveForecast(response.data.coord);
 }
