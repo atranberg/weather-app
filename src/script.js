@@ -177,6 +177,10 @@ function showWeatherCondition(response) {
     document
       .querySelector("#weather-image-display")
       .setAttribute("src", "media/mist.jpg");
+  } else {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/scatteredClouds.jpg");
   }
 
   retrieveForecast(response.data.coord);
