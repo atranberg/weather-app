@@ -106,8 +106,12 @@ function showWeatherCondition(response) {
     response.data.weather[0].description;
   document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
 
+  date.getTimezoneOffset();
+
   let unixSunriseTimestamp = response.data.sys.sunrise;
-  let sunriseDate = new Date(unixSunriseTimestamp * 1000);
+  let timezone = response.data.timezone - 7200;
+  let localUnixSunriseTimestamp = unixSunriseTimestamp + timezone;
+  let sunriseDate = new Date(localUnixSunriseTimestamp * 1000);
   let sunriseHours = sunriseDate.getHours();
   if (sunriseHours < 10) {
     sunriseHours = `0${sunriseHours}`;
@@ -120,7 +124,8 @@ function showWeatherCondition(response) {
   document.querySelector("#sunrise-time").innerHTML = formattedSunriseTime;
 
   let unixSunsetTimestamp = response.data.sys.sunset;
-  let sunsetDate = new Date(unixSunsetTimestamp * 1000);
+  let localUnixSunsetTimestamp = unixSunsetTimestamp + timezone;
+  let sunsetDate = new Date(localUnixSunsetTimestamp * 1000);
   let sunsetHours = sunsetDate.getHours();
   if (sunsetHours < 10) {
     sunsetHours = `0${sunsetHours}`;
@@ -133,7 +138,6 @@ function showWeatherCondition(response) {
   document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
 
   let weatherDescription = response.data.weather[0].main;
-  console.log(response.data.weather[0].main);
   if (weatherDescription.includes("Clouds")) {
     document
       .querySelector("#weather-image-display")
