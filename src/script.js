@@ -132,55 +132,36 @@ function showWeatherCondition(response) {
   let formattedSunsetTime = `${sunsetHours}:${sunsetMinutes}`;
   document.querySelector("#sunset-time").innerHTML = formattedSunsetTime;
 
-  let weatherDescription = response.data.weather[0].description;
-  if (weatherDescription === "clear sky") {
+  let weatherDescription = response.data.weather[0].main;
+  console.log(response.data.weather[0].main);
+  if (weatherDescription.includes("Clouds")) {
+    document
+      .querySelector("#weather-image-display")
+      .setAttribute("src", "media/scatteredClouds.jpg");
+  } else if (weatherDescription.includes("Clear")) {
     document
       .querySelector("#weather-image-display")
       .setAttribute("src", "media/clearSky.jpg");
-  }
-  if (weatherDescription === "few clouds") {
-    document
-      .querySelector("#weather-image-display")
-      .setAttribute("src", "media/fewClouds.jpg");
-  }
-  if (weatherDescription === "scattered clouds") {
-    document
-      .querySelector("#weather-image-display")
-      .setAttribute("src", "media/scatteredClouds.jpg");
-  }
-  if (weatherDescription === "broken clouds") {
-    document
-      .querySelector("#weather-image-display")
-      .setAttribute("src", "media/brokenClouds.jpg");
-  }
-  if (weatherDescription === "shower rain") {
+  } else if (weatherDescription.includes("Drizzle")) {
     document
       .querySelector("#weather-image-display")
       .setAttribute("src", "media/showerRain.jpg");
-  }
-  if (weatherDescription === "rain") {
+  } else if (weatherDescription.includes("Rain")) {
     document
       .querySelector("#weather-image-display")
       .setAttribute("src", "media/rain.jpg");
-  }
-  if (weatherDescription === "thunderstorm") {
+  } else if (weatherDescription.includes("Thunderstorm")) {
     document
       .querySelector("#weather-image-display")
       .setAttribute("src", "media/thunderstorm.jpg");
-  }
-  if (weatherDescription === "snow") {
+  } else if (weatherDescription.includes("Snow")) {
     document
       .querySelector("#weather-image-display")
       .setAttribute("src", "media/snow.jpg");
-  }
-  if (weatherDescription === "mist") {
-    document
-      .querySelector("#weather-image-display")
-      .setAttribute("src", "media/mist.jpg");
   } else {
     document
       .querySelector("#weather-image-display")
-      .setAttribute("src", "media/scatteredClouds.jpg");
+      .setAttribute("src", "media/mist.jpg");
   }
 
   retrieveForecast(response.data.coord);
