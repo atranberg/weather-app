@@ -106,8 +106,6 @@ function showWeatherCondition(response) {
     response.data.weather[0].description;
   document.querySelector("#wind-speed").innerHTML = response.data.wind.speed;
 
-  date.getTimezoneOffset();
-
   let unixSunriseTimestamp = response.data.sys.sunrise;
   let timezone = response.data.timezone - 7200;
   let localUnixSunriseTimestamp = unixSunriseTimestamp + timezone;
